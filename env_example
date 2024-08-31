@@ -1,0 +1,3 @@
+#Rename this file to .env
+export api_key="your_key" 
+export api_key="puuid" 
