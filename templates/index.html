@@ -6,7 +6,16 @@
     <title>HTML Site</title>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>This is me.</p>
+    <h1>Hello Marshall</h1>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    
+    <form method="POST">
+        <label for="name">Username:</label>
+        <input type="text" id="name" name="name" placeholder="Name#Tag" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>

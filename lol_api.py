@@ -3,6 +3,8 @@ import json
 from os import environ
 from bs4 import BeautifulSoup # type: ignore
 from dotenv import load_dotenv
+from urllib.parse import quote
+
 
 load_dotenv()
 
@@ -56,6 +58,20 @@ class GameData:
 
     def __str__(self):
         return f'"{self.gameId}"'
+
+#Convert username to puuid
+def get_puiid(name,tag):
+    region = "europe"
+    url = "https://" + region + ".api.riotgames.com/riot/account/v1/accounts/by-riot-id/" + quote(name) + "/" + quote(tag) + "?api_key=" + api_key
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        data_json = response.json()
+        puuid = data_json.get("puuid")
+        return puuid
+    
+    else:
+        return False
 
 #Get match and populate classes
 def get_match(user):
@@ -166,9 +182,8 @@ def featured_match():
     response = requests.get(url + endpoint + "?api_key=" + api_key)
     data_json = response.json()
     print(json.dumps(data_json, indent=4))
-
     
 
 #print(find_champ(get_champs(), "266"))
-get_match(user)
-featured_match()
+#get_match(user)
+#featured_match()
