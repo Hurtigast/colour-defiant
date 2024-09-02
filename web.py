@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import lol_api
+import api
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -12,8 +12,10 @@ def home():
         name = name_tag_split[0]
         tag = name_tag_split[1]
 
+        user = api.get_puiid(name,tag)
+        test = api.get_match(user)
         #Return answer
-        return render_template('user.html', message=lol_api.get_puiid(name,tag))
+        return render_template('user.html', message=test)
     
     return render_template('index.html')
 

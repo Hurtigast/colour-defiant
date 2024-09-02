@@ -133,11 +133,11 @@ def get_match(user):
             gameStartTime=data_json['gameStartTime'],
             gameLength=data_json['gameLength']
         )
-        
-        print(game_data)
+        print(players[0].puuid)
+        return(players)
 
     else:
-        print(f"No active match for that player")
+        return(f"No active match for that player")
 
 #Get all champions from current patch
 def get_champs():
